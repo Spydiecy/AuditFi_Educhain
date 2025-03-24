@@ -2,7 +2,7 @@
 
 **Next-generation smart contract security powered by Mistral AI, delivering instant, on-chain audit reports for Educhain Network.**
 
-![AuditFi Dashboard](https://github.com/user-attachments/assets/f35a7bc8-3a5a-43a3-a931-1cae9facf9bf)
+![image](https://github.com/user-attachments/assets/233d0f21-a1b1-499f-9704-a494a741b863)
 
 ## 🌟 Features
 
@@ -16,15 +16,14 @@
   - Specialized gas optimization for Educhain environment
   - Instant verification on Educhain Network Explorer
   
-  ![Educhain Network Support](https://github.com/user-attachments/assets/e14ab2ae-90b1-43aa-ab08-c931eb42045d)
-
+  
 - **Self-Contained Smart Contract Templates**
   - Dependency-free ERC20 implementation
   - Native ERC721 implementation without external libraries
   - AI-assisted contract generation with custom specifications
   - Robust security features built into every template
   - Educhain Network gas optimizations
-  - ![Screenshot 2025-03-06 202229](https://github.com/user-attachments/assets/9208b0bb-8b01-46ce-9227-6042d38ddde6)
+  - ![image](https://github.com/user-attachments/assets/12867f96-659d-4ea4-b5f2-5acabc94de3c)
 
 - **Secure Contract Building**
   - Zero-dependency contract architecture
@@ -32,6 +31,7 @@
   - Comprehensive event emissions for full transparency
   - Robust access control and integrity checks
   - Educhain-specific optimizations for improved performance
+  - ![image](https://github.com/user-attachments/assets/95adea8f-5c55-48f2-845e-9de623fc3bb4)
 
 - **On-Chain Verification System**  
   - All audit reports permanently stored on Educhain Network
@@ -39,7 +39,7 @@
   - Direct explorer integration for transparency
   - Verifiable security scores
   - ![image](https://github.com/user-attachments/assets/a38973b8-3ff5-4f19-aa07-a03671303f3b)
-  - ![image](https://github.com/user-attachments/assets/0fa36ed0-8ee6-43ab-b8e6-28b4a9dfcfef)
+  - ![image](https://github.com/user-attachments/assets/10dc859e-bf19-4f06-a136-bccdef262908)
 
 - **Interactive Development Experience**
   - Real-time code generation and validation
@@ -101,9 +101,9 @@ Visit [AuditFi](https://auditfi-Educhain.netlify.app/) to try it out on Educhain
   - Automatically generated smart contract documentation
   - AI-powered test case creation for multiple frameworks
 
-![image](https://github.com/user-attachments/assets/55b934a4-7fd5-42ff-ad19-a2430e508a90)
+![image](https://github.com/user-attachments/assets/5c918bed-0ffc-49f9-9710-431820b1c1bf)
 
-![image](https://github.com/user-attachments/assets/252eecc8-9bec-4b20-95cc-4125ae6f41ae)
+![image](https://github.com/user-attachments/assets/7b81c1ac-2305-4c0e-a6bf-23f42038a20b)
 
 ## 🔗 Network Support
 
@@ -115,7 +115,7 @@ Exclusively supporting both Educhain Network Testnet for:
 - Network-specific gas optimization
 - Educhain-focused security patterns
 
-![image](https://github.com/user-attachments/assets/cb47e089-9035-483f-a6e8-ac3cdd125b24)
+![image](https://github.com/user-attachments/assets/e289ca66-f352-4225-b0a7-1444d4c68150)
 
 ## 📬 Contact & Support
 
