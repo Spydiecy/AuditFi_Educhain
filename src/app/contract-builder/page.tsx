@@ -247,13 +247,13 @@ export default function ContractBuilder() {
       const { provider, signer } = await connectWallet();
       const detectedChain = await detectCurrentNetwork();
       
-      // Validate we're on an Electroneum network
+      // Validate we're on an EDU Chain network
       if (!detectedChain) {
-        throw new Error('Please switch to Electroneum Network (Mainnet or Testnet) to deploy contracts');
+        throw new Error('Please switch to EDU Chain Network (Testnet) to deploy contracts');
       }
       
-      if (detectedChain !== 'electroneumMainnet' && detectedChain !== 'electroneumTestnet') {
-        throw new Error('Please switch to Electroneum Network (Mainnet or Testnet) to deploy contracts');
+      if (detectedChain !== 'educhainTestnet') {
+        throw new Error('Please switch to EDU Chain Network (Testnet) to deploy contracts');
       }
 
       // Compile contract
@@ -347,7 +347,7 @@ export default function ContractBuilder() {
             <span className="text-blue-400 text-sm font-semibold">Smart Contract Development</span>
           </div>
           <h1 className="text-3xl font-mono font-bold mb-4 text-blue-400">Smart Contract Builder</h1>
-          <p className="text-gray-400">Generate and deploy secure smart contracts on Electroneum Network</p>
+          <p className="text-gray-400">Generate and deploy secure smart contracts on EDU Chain Network</p>
           
           <AnimatePresence>
             {error && (
@@ -558,18 +558,18 @@ export default function ContractBuilder() {
                       </div>
                     ) : (
                       <div className="text-sm text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 rounded-lg px-3 py-2">
-                        Please connect to Electroneum Network (Mainnet or Testnet) to deploy
+                        Please connect to EDU Chain Network (Mainnet or Testnet) to deploy
                       </div>
                     )}
 
                     <button
                       onClick={deployContract}
-                      disabled={isDeploying || !currentChain || (currentChain !== 'electroneumMainnet' && currentChain !== 'electroneumTestnet')}
-                      className={`w-full py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors duration-200
-                        ${isDeploying || !currentChain || (currentChain !== 'electroneumMainnet' && currentChain !== 'electroneumTestnet')
+                      disabled={isDeploying || !currentChain || (currentChain !== 'educhainTestnet')}
+                      className={`w-full py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-200 ${
+                        isDeploying || !currentChain || (currentChain !== 'educhainTestnet')
                           ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
                           : 'bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20'
-                        }`}
+                      }`}
                     >
                       {isDeploying ? (
                         <>

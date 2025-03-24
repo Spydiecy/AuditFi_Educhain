@@ -44,29 +44,17 @@ declare global {
 }
 
 export const CHAIN_CONFIG: Record<string, ChainConfig> = {
-  electroneumMainnet: {
-    chainId: '0xCB2E', // 52014 in hex
-    chainName: 'Electroneum Mainnet',
+  educhainTestnet: {
+    chainId: '0xA045C', // 656476 in hex
+    chainName: 'EDU Chain Testnet',
     nativeCurrency: {
-      name: 'Electroneum',
-      symbol: 'ETN',
+      name: 'EDU Chain',
+      symbol: 'EDU',
       decimals: 18
     },
-    rpcUrls: ['https://rpc.ankr.com/electroneum'],
-    blockExplorerUrls: ['https://blockexplorer.electroneum.com'],
-    iconPath: '/chains/electroneum.png'
-  },
-  electroneumTestnet: {
-    chainId: '0x4F5E0C', // 5201420 in hex
-    chainName: 'Electroneum Testnet',
-    nativeCurrency: {
-      name: 'Electroneum',
-      symbol: 'ETN',
-      decimals: 18
-    },
-    rpcUrls: ['https://rpc.ankr.com/electroneum_testnet'],
-    blockExplorerUrls: ['https://blockexplorer.thesecurityteam.rocks'],
-    iconPath: '/chains/electroneum.png'
+    rpcUrls: ['https://open-campus-codex-sepolia.drpc.org'],
+    blockExplorerUrls: ['https://opencampus-codex.blockscout.com'],
+    iconPath: '/chains/educhain.png'
   }
 } as const;
 
