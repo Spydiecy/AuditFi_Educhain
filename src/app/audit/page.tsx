@@ -201,11 +201,11 @@ export default function AuditPage() {
       const detectedChain = await detectCurrentNetwork();
       
       if (!detectedChain) {
-        throw new Error('Please switch to EDU Chain Network (Testnet) to register audits');
+        throw new Error('Please switch to EDU Chain Network (Testnet or Mainnet) to register audits');
       }
       
-      if (detectedChain !== 'educhainTestnet') {
-        throw new Error('Please switch to EDU Chain Network (Testnet) to register audits');
+      if (detectedChain !== 'educhainTestnet' && detectedChain !== 'educhainMainnet') {
+        throw new Error('Please switch to EDU Chain Network (Testnet or Mainnet) to register audits');
       }
       
       // Get the proper contract address based on the current network

@@ -55,6 +55,18 @@ export const CHAIN_CONFIG: Record<string, ChainConfig> = {
     rpcUrls: ['https://open-campus-codex-sepolia.drpc.org'],
     blockExplorerUrls: ['https://opencampus-codex.blockscout.com'],
     iconPath: '/chains/educhain.png'
+  },
+  educhainMainnet: {
+    chainId: '0xA3C3', // 41923 in hex
+    chainName: 'EDU Chain Mainnet',
+    nativeCurrency: {
+      name: 'EDU Chain',
+      symbol: 'EDU',
+      decimals: 18
+    },
+    rpcUrls: ['https://rpc.edu-chain.raas.gelato.cloud'],
+    blockExplorerUrls: ['https://educhain.blockscout.com'],
+    iconPath: '/chains/educhain.png'
   }
 } as const;
 

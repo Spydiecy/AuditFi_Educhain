@@ -1,6 +1,7 @@
 // constants/contracts.ts
 export const CONTRACT_ADDRESSES = {
   educhainTestnet: '0x711fEf8557C14e54e59778DC46b8E8816a063f81',
+  educhainMainnet: '0xF887B4D3b17C12C86cc917cF72fb8881f866a847',
 } as const;
 
 export const AUDIT_REGISTRY_ABI = [

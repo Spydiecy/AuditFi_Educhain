@@ -57,81 +57,84 @@ export default function ReportsPage() {
       const BATCH_SIZE = 50;
       const MAX_BLOCK_RANGE = 10000; // Maximum block range allowed by the RPC provider
   
-      // Only fetch from EDU Chain Testnet for now
-      const chainKey = 'educhainTestnet';
-      const chainData = CHAIN_CONFIG[chainKey];
+      // Fetch from both EDU Chain networks
+      const chainKeys = ['educhainTestnet', 'educhainMainnet'] as const;
       
-      try {
-        console.log(`Fetching from ${chainKey}...`);
+      for (const chainKey of chainKeys) {
+        const chainData = CHAIN_CONFIG[chainKey];
         
-        const provider = new ethers.JsonRpcProvider(chainData.rpcUrls[0]);
-        console.log('Provider connected successfully');
+        try {
+          console.log(`Fetching from ${chainKey}...`);
+          
+          const provider = new ethers.JsonRpcProvider(chainData.rpcUrls[0]);
+          console.log('Provider connected successfully');
 
-        const contract = new ethers.Contract(
-          CONTRACT_ADDRESSES[chainKey as ChainKey],
-          AUDIT_REGISTRY_ABI,
-          provider
-        );
-        console.log('Contract instance created');
+          const contract = new ethers.Contract(
+            CONTRACT_ADDRESSES[chainKey],
+            AUDIT_REGISTRY_ABI,
+            provider
+          );
+          console.log('Contract instance created');
 
-        // Get total contracts for this chain
-        const totalContracts = await contract.getTotalContracts();
-        console.log(`Found ${totalContracts.toString()} contracts on ${chainKey}`);
+          // Get total contracts for this chain
+          const totalContracts = await contract.getTotalContracts();
+          console.log(`Found ${totalContracts.toString()} contracts on ${chainKey}`);
 
-        // Fetch in batches
-        let processed = 0;
-        while (processed < totalContracts) {
-          try {
-            const {
-              contractHashes,
-              stars,
-              summaries,
-              auditors,
-              timestamps
-            } = await contract.getAllAudits(processed, BATCH_SIZE);
+          // Fetch in batches
+          let processed = 0;
+          while (processed < totalContracts) {
+            try {
+              const {
+                contractHashes,
+                stars,
+                summaries,
+                auditors,
+                timestamps
+              } = await contract.getAllAudits(processed, BATCH_SIZE);
 
-            console.log(`Processing batch of ${contractHashes.length} audits`);
+              console.log(`Processing batch of ${contractHashes.length} audits`);
 
-            for (let i = 0; i < contractHashes.length; i++) {
-              try {
-                const filter = contract.filters.AuditRegistered(contractHashes[i]);
-                const currentBlock = await provider.getBlockNumber();
-                const startBlock = Math.max(0, currentBlock - MAX_BLOCK_RANGE);
-                
-                // Query events in chunks to respect the block range limitation
-                const events = await contract.queryFilter(filter, startBlock, currentBlock);
-                const txHash = events[events.length - 1]?.transactionHash || '';
+              for (let i = 0; i < contractHashes.length; i++) {
+                try {
+                  const filter = contract.filters.AuditRegistered(contractHashes[i]);
+                  const currentBlock = await provider.getBlockNumber();
+                  const startBlock = Math.max(0, currentBlock - MAX_BLOCK_RANGE);
+                  
+                  // Query events in chunks to respect the block range limitation
+                  const events = await contract.queryFilter(filter, startBlock, currentBlock);
+                  const txHash = events[events.length - 1]?.transactionHash || '';
 
-                allAudits.push({
-                  contractHash: contractHashes[i],
-                  transactionHash: txHash,
-                  stars: Number(stars[i]),
-                  summary: summaries[i],
-                  auditor: auditors[i],
-                  timestamp: Number(timestamps[i]),
-                  chain: chainKey as ChainKey
-                });
-              } catch (eventError) {
-                console.error(`Error fetching events for contract ${contractHashes[i]}:`, eventError);
-                // Continue with the next contract even if this one fails
-                continue;
+                  allAudits.push({
+                    contractHash: contractHashes[i],
+                    transactionHash: txHash,
+                    stars: Number(stars[i]),
+                    summary: summaries[i],
+                    auditor: auditors[i],
+                    timestamp: Number(timestamps[i]),
+                    chain: chainKey
+                  });
+                } catch (eventError) {
+                  console.error(`Error fetching events for contract ${contractHashes[i]}:`, eventError);
+                  // Continue with the next contract even if this one fails
+                  continue;
+                }
               }
+
+              processed += contractHashes.length;
+              console.log(`Processed ${processed}/${totalContracts} on ${chainKey}`);
+
+            } catch (batchError) {
+              console.error(`Error fetching batch at ${processed} from ${chainKey}:`, batchError);
+              // Add a delay before retrying
+              await new Promise(resolve => setTimeout(resolve, 1000));
+              continue;
             }
-
-            processed += contractHashes.length;
-            console.log(`Processed ${processed}/${totalContracts} on ${chainKey}`);
-
-          } catch (batchError) {
-            console.error(`Error fetching batch at ${processed} from ${chainKey}:`, batchError);
-            // Add a delay before retrying
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            continue;
           }
-        }
 
-      } catch (chainError) {
-        console.error(`Error processing chain ${chainKey}:`, chainError);
-        setError('Failed to connect to the network. Please try again later.');
+        } catch (chainError) {
+          console.error(`Error processing chain ${chainKey}:`, chainError);
+          setError('Failed to connect to the network. Please try again later.');
+        }
       }
   
       console.log(`Total audits collected: ${allAudits.length}`);

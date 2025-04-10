@@ -249,11 +249,11 @@ export default function ContractBuilder() {
       
       // Validate we're on an EDU Chain network
       if (!detectedChain) {
-        throw new Error('Please switch to EDU Chain Network (Testnet) to deploy contracts');
+        throw new Error('Please switch to EDU Chain Network (Testnet or Mainnet) to deploy contracts');
       }
       
-      if (detectedChain !== 'educhainTestnet') {
-        throw new Error('Please switch to EDU Chain Network (Testnet) to deploy contracts');
+      if (detectedChain !== 'educhainTestnet' && detectedChain !== 'educhainMainnet') {
+        throw new Error('Please switch to EDU Chain Network (Testnet or Mainnet) to deploy contracts');
       }
 
       // Compile contract
@@ -564,9 +564,9 @@ export default function ContractBuilder() {
 
                     <button
                       onClick={deployContract}
-                      disabled={isDeploying || !currentChain || (currentChain !== 'educhainTestnet')}
+                      disabled={isDeploying || !currentChain || (currentChain !== 'educhainTestnet' && currentChain !== 'educhainMainnet')}
                       className={`w-full py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-200 ${
-                        isDeploying || !currentChain || (currentChain !== 'educhainTestnet')
+                        isDeploying || !currentChain || (currentChain !== 'educhainTestnet' && currentChain !== 'educhainMainnet')
                           ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
                           : 'bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20'
                       }`}

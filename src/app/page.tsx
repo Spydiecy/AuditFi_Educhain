@@ -36,6 +36,18 @@ const CHAIN_CONFIG = {
     rpcUrls: ['https://open-campus-codex-sepolia.drpc.org'],
     blockExplorerUrls: ['https://opencampus-codex.blockscout.com'],
     iconPath: '/chains/educhain.png'
+  },
+  educhainMainnet: {
+    chainId: '0xA3C3', // 41923 in hex
+    chainName: 'EDU Chain Mainnet',
+    nativeCurrency: {
+      name: 'EDU Chain',
+      symbol: 'EDU',
+      decimals: 18
+    },
+    rpcUrls: ['https://rpc.edu-chain.raas.gelato.cloud'],
+    blockExplorerUrls: ['https://educhain.blockscout.com'],
+    iconPath: '/chains/educhain.png'
   }
 };
 
@@ -83,7 +95,7 @@ const recentAudits: Audit[] = [
     summary: 'No critical vulnerabilities found. Code follows best practices.',
     auditor: '0xABc...123',
     timestamp: 1703116800,
-    chain: 'educhainTestnet'
+    chain: 'educhainMainnet'
   },
   {
     contractHash: '0x456...def',
@@ -99,7 +111,7 @@ const recentAudits: Audit[] = [
     summary: 'Excellent implementation with robust security measures.',
     auditor: '0xGHi...789',
     timestamp: 1702944000,
-    chain: 'educhainTestnet'
+    chain: 'educhainMainnet'
   }
 ];
 
